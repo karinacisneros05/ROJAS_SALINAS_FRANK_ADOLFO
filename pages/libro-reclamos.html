@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Libro de Reclamos</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/header.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/footer.css">
+  <link rel="stylesheet" href="../css/libro-reclamos.css">
+  <style>
+    @media print {
+      header, nav, footer, .footer-container, .footer-copyright {
+        display: none !important;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      .libro-form {
+        box-shadow: none !important;
+        border: 1px solid #ccc;
+      }
+      .content {
+        margin: 0;
+        padding: 0;
+      }
+      .submit-btn, button[onclick="window.print()"] {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header-container">
+      <div class="logo-container" style="border-radius: 15px;">
+        <img src="https://res.cloudinary.com/dbyahumwd/image/upload/v1749886070/logo_yzkq0e.png"
+          alt="Logo Cultura Peruana" class="logo">
+      </div>
+      <div class="header-image-container">
+        <img
+          src="https://cdn.www.gob.pe/uploads/document/file/6469227/970589-la-cultura-peruana-resalta-en-el-latinoamerica-fest-comida-y-cultura-de-berna.png"
+          alt="Cultura Peruana" class="header-image">
+      </div>
+      <div class="header-video-container">
+        <iframe class="header-video"
+          src="https://www.youtube.com/embed/OBsEjp6m6Ng?autoplay=1&mute=1&loop=1&playlist=OBsEjp6m6Ng&controls=0&showinfo=0&rel=0&modestbranding=1"
+          frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      </div>
+    </div>
+  </header>
+  <nav>
+    <div class="nav-container">
+      <ul>
+        <li><a href="../01_Introduccion.html">INTRODUCCIÓN</a></li>
+        <li><a href="gastronomia/02_subtema01.html">LA GASTRONOMÍA</a></li>
+        <li><a href="vestimenta/06_subtema02.html">VESTIMENTA</a></li>
+        <li><a href="artes/index.html">ARTES</a></li>
+        <li><a href="conclusion.html">CONCLUSIÓN</a></li>
+        <li><a href="cierre.html">CIERRE</a></li>
+      </ul>
+    </div>
+  </nav>
+  <main>
+    <section class="content">
+      <h1 style="text-align:center; color:#c81d11; margin-bottom:32px; font-size:2.2rem; font-weight:700;">Libro de
+        Reclamaciones</h1>
+      <form class="libro-form" action="mailto:joserodriguez@elp.edu.pe" method="POST" enctype="text/plain"
+        style="max-width:900px;margin:0 auto;background:#fff;padding:40px 32px 32px 32px;border-radius:16px;box-shadow:0 2px 16px rgba(0,0,0,0.10);">
+        <input type="hidden" name="from" value="ing.jose.rodriguez@hotmail.com">
+        <input type="hidden" name="subject" value="Libro de Reclamaciones">
+        <div class="section" style="margin-bottom:32px;border:1.5px solid #e0e0e0;border-radius:8px;padding:28px 20px;">
+          <h2 class="section-title"
+            style="font-size:17px;font-weight:bold;color:#c81d11;margin-bottom:18px;padding-bottom:7px;border-bottom:2px solid #c81d11;">
+            1. IDENTIFICACIÓN DEL CONSUMIDOR RECLAMANTE</h2>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:16px;">
+            <div class="form-group"><label style="margin-bottom:7px;">Nombre</label><input type="text" name="nombre"
+                required style="padding:11px 10px;"></div>
+            <div class="form-group"><label style="margin-bottom:7px;">Domicilio</label><input type="text"
+                name="domicilio" required style="padding:11px 10px;"></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:16px;">
+            <div class="form-group">
+              <label style="margin-bottom:7px;">Tipo de Documento</label>
+              <select name="tipo_documento" required style="padding:11px 10px; width: 100%; border: 1.5px solid #c81d11; border-radius: 5px; font-size: 15px; background: #fafafa;">
+                <option value="">Seleccione tipo de documento</option>
+                <option value="DNI">DNI - Documento Nacional de Identidad</option>
+                <option value="CE">CE - Carné de Extranjería</option>
+                <option value="RUC">RUC - Registro Único de Contribuyentes</option>
+                <option value="PASAPORTE">PASAPORTE</option>
+                <option value="CARNET_ESTUDIANTIL">CARNET ESTUDIANTIL</option>
+                <option value="OTRO">OTRO</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label style="margin-bottom:7px;">Número de Documento</label>
+              <input type="text" name="numero_documento" required style="padding:11px 10px;">
+            </div>
+          </div>
+          <div class="form-group"><label style="margin-bottom:7px;">Teléfono</label><input type="tel" name="telefono"
+              required style="padding:11px 10px;"></div>
+          <div class="form-group" style="margin-bottom:16px;"><label style="margin-bottom:7px;">Correo
+              Electrónico</label><input type="email" name="correo" required style="padding:11px 10px;"></div>
+        </div>
+        <div class="section" style="margin-bottom:32px;border:1.5px solid #e0e0e0;border-radius:8px;padding:28px 20px;">
+          <h2 class="section-title"
+            style="font-size:17px;font-weight:bold;color:#c81d11;margin-bottom:18px;padding-bottom:7px;border-bottom:2px solid #c81d11;">
+            2. IDENTIFICACIÓN DEL BIEN CONTRATADO</h2>
+          <div style="display:flex;gap:28px;margin-bottom:18px;">
+            <div class="checkbox-item"><input type="checkbox" id="producto" name="tipo_bien" value="producto"><label
+                for="producto" style="margin-left:7px;">Producto</label></div>
+            <div class="checkbox-item"><input type="checkbox" id="servicio" name="tipo_bien" value="servicio" checked><label
+                for="servicio" style="margin-left:7px;">Servicio</label></div>
+          </div>
+          <div class="form-group" style="margin-bottom:16px;"><label style="margin-bottom:7px;">Monto
+              reclamado</label><input type="number" name="monto" step="0.01" style="padding:11px 10px;"></div>
+          <div class="form-group textarea-group" style="position:relative;margin-bottom:16px;">
+            <label style="margin-bottom:7px;">Descripción</label>
+            <textarea name="descripcion" rows="4" maxlength="400" style="padding:11px 10px;"></textarea>
+          </div>
+        </div>
+        <div class="section" style="margin-bottom:32px;border:1.5px solid #e0e0e0;border-radius:8px;padding:28px 20px;">
+          <h2 class="section-title"
+            style="font-size:17px;font-weight:bold;color:#c81d11;margin-bottom:18px;padding-bottom:7px;border-bottom:2px solid #c81d11;">
+            3. DETALLE DE LA RECLAMACIÓN</h2>
+          <div style="display:flex;gap:28px;margin-bottom:18px;flex-wrap:wrap;">
+            <div class="checkbox-item"><input type="radio" id="reclamo" name="tipo_reclamacion" value="reclamo"><label
+                for="reclamo" style="margin-left:7px;">Reclamo (Disconformidad relacionada a los productos o
+                servicios.)</label></div>
+            <div class="checkbox-item"><input type="radio" id="queja" name="tipo_reclamacion" value="queja"><label
+                for="queja" style="margin-left:7px;">Queja (Disconformidad no relacionada a los productos o servicios;
+                o, malestar o descontento respecto a la atención al público.)</label></div>
+          </div>
+          <div class="form-group textarea-group" style="position:relative;margin-bottom:16px;">
+            <label style="margin-bottom:7px;">Detalle</label>
+            <textarea name="detalle" rows="6" maxlength="1200" style="padding:11px 10px;"></textarea>
+          </div>
+        </div>
+        <div class="section" style="margin-bottom:32px;border:1.5px solid #e0e0e0;border-radius:8px;padding:28px 20px;">
+          <h2 class="section-title"
+            style="font-size:17px;font-weight:bold;color:#c81d11;margin-bottom:18px;padding-bottom:7px;border-bottom:2px solid #c81d11;">
+            4. OBSERVACIONES Y ACCIONES ADOPTADAS POR EL PROVEEDOR</h2>
+          <div class="form-group"><label style="margin-bottom:7px;">Observaciones</label><textarea name="observaciones"
+              rows="4" style="padding:11px 10px;"></textarea></div>
+        </div>
+        <div class="legal-text"
+          style="font-size:13px;color:#666;line-height:1.5;margin-top:24px;padding:18px;background:#f8f9fa;border-radius:8px;">
+          <p>Se le informa que sus datos serán almacenados en el banco de datos "Libro de Reclamaciones", con código de
+            registro correspondiente, de titularidad de la institución educativa por un plazo indeterminado, a fin de dar respuesta a sus quejas y reclamos, así como llevar un registro de los mismos con el propósito de cumplir con las normas de protección al consumidor.</p>
+          <p>Se deja constancia que: (i) el detalle de los terceros con acceso a los datos personales y cualquier
+            variación de estos será actualizada en los canales oficiales de la institución; (ii) el tratamiento de sus datos personales es necesario para cumplir con la normativa de protección y defensa de los consumidores; y, (iii) podrá ejercer los derechos previstos en la Ley N° 29733, presentándose físicamente en la dirección de la institución con el asunto "Derechos Datos Personales".</p>
+          <p><strong>*La formulación del reclamo no impide acudir a otras vías de solución de controversias ni es
+              requisito previo para interponer una denuncia ante el INDECOPI.</strong></p>
+          <p><strong>*La institución debe dar respuesta al reclamo o queja en un plazo no mayor a quince (15) días
+              hábiles, el cual es improrrogable.</strong></p>
+        </div>
+        <div style="display:flex;justify-content:center;gap:24px;margin-top:36px;">
+          <button type="button" onclick="window.print()"
+            style="background:#e0e0e0;color:#333;padding:12px 32px;border:none;border-radius:6px;font-size:16px;font-weight:600;cursor:pointer;">Descargar
+            PDF</button>
+          <button type="submit" class="submit-btn"
+            style="background-color:#c81d11;color:#fff;padding:14px 44px;border:none;border-radius:6px;font-size:17px;font-weight:bold;cursor:pointer;transition:background 0.3s;">Enviar
+            Reclamación</button>
+        </div>
+      </form>
+    </section>
+  </main>
+  <footer>
+    <div class="footer-container">
+      <div class="footer-social">
+        <a href="https://www.facebook.com/share/1Do9czenWR/" class="social-icon facebook" target="_blank">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Facebook_f_logo_%282019%29.svg/512px-Facebook_f_logo_%282019%29.svg.png"
+            alt="Facebook" class="facebook-icon">
+        </a>
+        <a href="https://www.instagram.com/puruvianculture?igsh=MWF6aGxtMm9hdnJx" class="social-icon instagram"
+          target="_blank">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/512px-Instagram_icon.png"
+            alt="Instagram" class="instagram-icon">
+        </a>
+        <a href="https://wa.me/51999123456" class="social-icon whatsapp" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/512px-WhatsApp.svg.png"
+            alt="WhatsApp" class="whatsapp-icon">
+        </a>
+      </div>
+      <div class="footer-links">
+        <a href="../pages/consulta-docente.html" class="footer-link CONSULTA-FOOTER">
+          <div class="footer-link-icon">
+            <img src="../assets/consulta.png" alt="">
+          </div>
+          <span class="footer-link-text">Consulta del docente</span>
+        </a>
+        <a href="../pages/libro-reclamos.html" class="footer-link RECLAMOS-FOOTER" style="display:none;">
+          <div class="footer-link-icon"><img src="../assets/libro.webp" alt="libro"></div>
+          <span class="footer-link-text">Libro de reclamos</span>
+        </a>
+        <a href="../pages/suscripcion.html" class="footer-link SUSCRIPCION-FOOTER">
+          <div class="footer-link-icon">✉️</div>
+          <span class="footer-link-text">Suscríbete al boletín</span>
+        </a>
+        <a href="tiendas.html" class="footer-link COTIZACION-FOOTER">
+          <div class="footer-link-icon">
+            <img src="../assets/tienda.png" alt="tienda">
+          </div>
+          <span class="footer-link-text">Tienda</span>
+        </a>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <p>&copy; 2025 Esencia de Nuestra Cultura Peruana - Ingeniería de Sistemas de Información - Ayacucho, Perú</p>
+    </div>
+  </footer>
+</body>
+
+</html>

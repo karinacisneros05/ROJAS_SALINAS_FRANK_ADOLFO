@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cierre - Esencia de Nuestra Cultura Peruana</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/header.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/footer.css">
+  <style>
+    .content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .team-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      margin: 40px 0;
+    }
+
+    .team-card {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.10);
+      width: 100%;
+      padding: 24px 32px;
+      display: flex;
+      gap: 32px;
+      transition: transform 0.2s;
+    }
+
+    .team-card:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 6px 24px rgba(200, 29, 17, 0.13);
+    }
+
+    .video-div {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .video-div video {
+      width: 100%;
+      max-width: 496px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .video-div video[src*="frank.mp4"] {
+      height: 279px;
+      object-fit: cover;
+    }
+
+    .content-div {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .content-div img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid #c81d11;
+      background: #f8f4f0;
+      flex-shrink: 0;
+    }
+
+    .team-card-content {
+      flex: 1;
+    }
+
+    .team-card h3 {
+      margin: 0 0 10px 0;
+      color: #c81d11;
+      font-size: 1.25em;
+    }
+
+    .team-card p {
+      font-size: 1em;
+      color: #444;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .team-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 24px 20px;
+      }
+      
+      .video-div video {
+        max-width: 100%;
+        margin-bottom: 20px;
+      }
+      
+      .content-div {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .content-div img {
+        margin-bottom: 16px;
+      }
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Controlar el video de Guillermina para que se detenga a los 45 segundos
+      const guilleVideo = document.querySelector('video[src*="guille.mp4"]');
+      if (guilleVideo) {
+        guilleVideo.addEventListener('timeupdate', function() {
+          if (this.currentTime >= 45) { // 45 segundos
+            this.pause();
+            this.currentTime = 0; // Volver al inicio
+          }
+        });
+      }
+    });
+  </script>
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="logo-container" style="border-radius: 15px;">
+        <img src="https://res.cloudinary.com/dbyahumwd/image/upload/v1749886070/logo_yzkq0e.png" alt="Logo Cultura Peruana"
+          class="logo">
+      </div>
+
+      <div class="header-image-container">
+        <img
+          src="https://cdn.www.gob.pe/uploads/document/file/6469227/970589-la-cultura-peruana-resalta-en-el-latinoamerica-fest-comida-y-cultura-de-berna.png"
+          alt="Cultura Peruana" class="header-image">
+      </div>
+      <div class="header-video-container">
+        <iframe class="header-video"
+          src="https://player.cloudinary.com/embed/?cloud_name=dbyahumwd&public_id=WhatsApp_Video_2025-06-21_at_3.15.51_AM_scocvy&profile=cld-default"
+          frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navegación -->
+  <nav>
+    <div class="nav-container">
+      <ul>
+        <li><a href="../01_Introduccion.html">INTRODUCCIÓN</a></li>
+        <li><a href="gastronomia/02_subtema01.html">LA GASTRONOMÍA</a></li>
+        <li><a href="vestimenta/06_subtema02.html">VESTIMENTA</a></li>
+        <li><a href="artes/10_subtema03.html">ARTES</a></li>
+        <li><a href="14_conclusiones.html">CONCLUSIÓN</a></li>
+        <li><a href="15_agradecimiento.html" class="active">CIERRE</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Contenido Principal -->
+  <main>
+    <section class="content">
+      <h1>Equipo del Proyecto</h1>
+      <div class="team-cards">
+        <div class="team-card">
+          <div class="content-div">
+            <img src="../assets/karina.jpeg" alt="Marizabel Karina Cisneros Huaman">
+            <div class="team-card-content">
+              <h3>Marizabel Karina Cisneros Huaman</h3>
+              <p style="text-align: justify;">Este proyecto me permitió profundizar en la cultura peruana, explorando su gastronomía, vestimenta y arte.
+                Aprendí cómo las tradiciones ancestrales y las influencias externas han forjado una identidad única,
+                destacando valores como la solidaridad y el respeto a la diversidad. La experiencia también reforzó la
+                importancia de trabajar en equipo, enriqueciéndose la comprensión colectiva del tema y apreciando cómo
+                las tradiciones continúan influenciando la vida cotidiana en Perú.</p>
+            </div>
+          </div>
+          <div class="video-div">
+            <video src="../assets/videos-cierre/karina.mp4" controls></video>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="content-div">
+            <img src="../assets/guishe.jpeg" alt="Guillermina Leche López">
+            <div class="team-card-content">
+              <h3>Guillermina Leche López</h3>
+              <p style="text-align: justify;">Este proyecto brindó la oportunidad de explorar la riqueza cultural de Perú, enfocándose en su
+                gastronomía, vestimenta y arte. A través de la investigación, se destacó cómo la fusión de tradiciones
+                y diversas influencias ha fortalecido una identidad única. Además, se reflexionó sobre la importancia
+                de valores como la solidaridad y la preservación de las tradiciones, elementos clave para la cohesión
+                social. La experiencia también permitió el trabajo colaborativo, lo cual enriqueció la visión general
+                del tema.</p>
+            </div>
+          </div>
+          <div class="video-div">
+            <video src="../assets/videos-cierre/guille.mp4" controls></video>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="content-div">
+            <img src="../assets/karta.jpeg" alt="Karla Maili Orosco Borda">
+            <div class="team-card-content">
+              <h3>Karla Maili Orosco Borda</h3>
+              <p style="text-align: justify;">Durante este proyecto, tuve la oportunidad de investigar y comprender la riqueza de la cultura peruana.
+                A través del estudio de su gastronomía, vestimenta y arte, aprendí cómo las tradiciones ancestrales y
+                las influencias externas han moldeado una identidad única. Además, reflexioné sobre la importancia de
+                valores como el respeto a la diversidad y la solidaridad, que fortalecen el tejido social. La
+                colaboración con el equipo permitió enriquecer la comprensión y apreciar la relevancia de las
+                tradiciones en la sociedad actual.</p>
+            </div>
+          </div>
+          <div class="video-div">
+            <video src="../assets/videos-cierre/karla.mp4" controls></video>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="content-div">
+            <img src="../assets/yummi.jpg" alt="Zandra yummiPariona Pacheco">
+            <div class="team-card-content">
+              <h3>Zandra Yunmy Pariona Pacheco</h3>
+              <p style="text-align: justify;">Este proyecto me permitió conocer más sobre la cultura peruana, explorando su gastronomía, vestimenta y
+                arte. A lo largo de la investigación, descubrí cómo la combinación de influencias históricas y modernas
+                ha creado una identidad cultural única. También reflexioné sobre cómo los valores como la diversidad y
+                la solidaridad son fundamentales para la cohesión social del país. El trabajo en equipo enriqueció el
+                análisis, permitiéndome entender la importancia de las tradiciones en la vida cotidiana de los
+                peruanos.</p>
+            </div>
+          </div>
+          <div class="video-div">
+            <video src="../assets/videos-cierre/yunmy.mp4" controls></video>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="content-div">
+            <img src="../assets/frank.jpeg" alt="Frank Adolfo Rojas Salinas">
+            <div class="team-card-content">
+              <h3>Frank Adolfo Rojas Salinas</h3>
+              <p style="text-align: justify;">A través de este proyecto, tuve la oportunidad de adentrarme en la esencia de la cultura peruana,
+                explorando su gastronomía, vestimenta y arte. Aprendí cómo las tradiciones ancestrales y las
+                influencias externas han dado forma a una identidad cultural única. Además, comprendí la importancia
+                de valores como la diversidad, la solidaridad y el respeto por la naturaleza, que son fundamentales
+                para la vida en comunidad en Perú. El trabajo en equipo fue clave para enriquecer el proyecto y
+                fortalecer nuestra comprensión colectiva del tema.</p>
+            </div>
+          </div>
+          <div class="video-div">
+            <video src="../assets/videos-cierre/frank.mp4" controls></video>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-social">
+        <a href="https://www.facebook.com/share/1Do9czenWR/" class="social-icon facebook" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Facebook_f_logo_%282019%29.svg/512px-Facebook_f_logo_%282019%29.svg.png"
+            alt="Facebook" class="facebook-icon">
+        </a>
+        <a href="https://www.instagram.com/puruvianculture?igsh=MWF6aGxtMm9hdnJx" class="social-icon instagram"
+          target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/512px-Instagram_icon.png"
+            alt="Instagram" class="instagram-icon">
+        </a>
+        <a href="https://wa.me/51999123456" class="social-icon whatsapp" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/512px-WhatsApp.svg.png"
+            alt="WhatsApp" class="whatsapp-icon">
+        </a>
+      </div>
+
+      <div class="footer-links">
+        <a href="consulta-docente.html" class="footer-link CONSULTA-FOOTER">
+          <div class="footer-link-icon">
+            <img src="../assets/consulta.png" alt="">
+          </div>
+          <span class="footer-link-text">Consulta del docente</span>
+        </a>
+        <a href="libro-reclamos.html" class="footer-link RECLAMOS-FOOTER">
+          <div class="footer-link-icon"><img src="../assets/libro.webp" alt="libro"></div>
+          <span class="footer-link-text">Libro de reclamos</span>
+        </a>
+        <a href="suscripcion.html" class="footer-link SUSCRIPCION-FOOTER">
+          <div class="footer-link-icon">✉️</div>
+          <span class="footer-link-text">Suscríbete al boletín</span>
+        </a>
+        <a href="tiendas.html" class="footer-link COTIZACION-FOOTER">
+          <div class="footer-link-icon">
+            <img src="../assets/tienda.png" alt="tienda">
+          </div>
+          <span class="footer-link-text">Tienda</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-copyright">
+      <p>&copy; 2025 Esencia de Nuestra Cultura Peruana - Ingeniería de Sistemas de Información - Ayacucho, Perú
+      </p>
+    </div>
+  </footer>
+</body>
+
+</html>

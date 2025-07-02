@@ -1,0 +1,106 @@
+/* Estilos para el header con tres elementos */
+header {
+    padding: 15px 0;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 15px 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+    background-color: #ddbfbf;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+/* Sección del logo */
+.logo-container {
+    flex: 1;
+    min-width: 250px;
+    max-width: 300px;
+    display: flex;
+    justify-content: center;
+}
+
+.logo {
+    max-height: 200px;
+    width: auto;
+}
+
+/* Sección de la imagen */
+.header-image-container {
+    flex: 3;
+    height: 220px;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Sección del video */
+.header-video-container {
+    flex: 3;
+    height: 220px;
+    overflow: hidden;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .logo-container {
+        margin-bottom: 10px;
+    }
+    
+    .header-image-container,
+    .header-video-container {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .header-container {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .logo-container {
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin-bottom: 15px;
+    }
+    
+    .header-image-container,
+    .header-video-container {
+        flex: 1 0 100%;
+        width: 100%;
+        height: 100%;
+    }
+}

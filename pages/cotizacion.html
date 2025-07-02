@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotización - Esencia de Nuestra Cultura Peruana</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <style>
+        body {
+            min-height: 100vh;
+        }
+        
+        .cotizacion-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .cotizacion-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        
+        .cotizacion-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #1e40af;
+            margin-bottom: 8px;
+        }
+        
+        .cotizacion-subtitle {
+            font-size: 1.125rem;
+            color: #3b82f6;
+        }
+        
+        .areas-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .area-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border: 2px solid #bfdbfe;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .area-header {
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .area-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .area-description {
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+        
+        .area-content {
+            padding: 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .productos-lista {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 24px;
+            flex: 1;
+        }
+        
+        .producto-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            background: #f9fafb;
+        }
+        
+        .producto-imagen {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+        
+        .producto-info {
+            flex: 1;
+        }
+        
+        .producto-nombre {
+            font-weight: 600;
+            color: #374151;
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+        
+        .producto-precio {
+            font-size: 0.875rem;
+            color: #059669;
+            font-weight: 600;
+        }
+        
+        .cantidad-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .cantidad-input {
+            width: 64px;
+            padding: 8px;
+            border: 2px solid #d1d5db;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 1rem;
+            background: white;
+        }
+        
+        .cantidad-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+        
+        .precio-parcial {
+            text-align: right;
+            min-width: 100px;
+            font-weight: 600;
+            color: #059669;
+        }
+        
+        .formulario-pedido {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            flex: 1;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: #374151;
+            font-size: 0.875rem;
+        }
+        
+        .form-input {
+            padding: 12px;
+            border: 2px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: white;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+        
+        .form-textarea {
+            padding: 12px;
+            border: 2px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: white;
+            resize: vertical;
+            min-height: 80px;
+        }
+        
+        .form-textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+        
+        .botones-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            margin-top: auto;
+        }
+        
+        .btn-calcular {
+            background: #059669;
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.125rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 200px;
+            justify-content: center;
+        }
+        
+        .btn-calcular:hover {
+            background: #047857;
+            transform: translateY(-1px);
+        }
+        
+        .btn-cotizar {
+            background: #dc2626;
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.125rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 200px;
+            justify-content: center;
+        }
+        
+        .btn-cotizar:hover {
+            background: #b91c1c;
+            transform: translateY(-1px);
+        }
+        
+        .total-section {
+            margin-top: 16px;
+            text-align: center;
+            padding: 16px;
+            background: #fef3c7;
+            border-radius: 8px;
+            border: 1px solid #f59e0b;
+        }
+        
+        .total-label {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        .total-valor {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #059669;
+        }
+        
+        .btn-regresar {
+            background: #6b7280;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .btn-regresar:hover {
+            background: #4b5563;
+            transform: translateY(-1px);
+        }
+        
+        .flecha-icon {
+            width: 16px;
+            height: 16px;
+        }
+        
+        .calculadora-icon, .email-icon {
+            width: 20px;
+            height: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .areas-container {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            
+            .producto-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 12px;
+            }
+            
+            .precio-parcial {
+                text-align: center;
+            }
+            
+            .cotizacion-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo-container" style="border-radius: 15px;">
+                <img src="https://res.cloudinary.com/dbyahumwd/image/upload/v1749886070/logo_yzkq0e.png"
+                    alt="Logo Cultura Peruana" class="logo">
+            </div>
+            <div class="header-image-container">
+                <img src="https://cdn.www.gob.pe/uploads/document/file/6469227/970589-la-cultura-peruana-resalta-en-el-latinoamerica-fest-comida-y-cultura-de-berna.png"
+                    alt="Cultura Peruana" class="header-image">
+            </div>
+            <div class="header-video-container">
+                <iframe class="header-video"
+                    src="https://www.youtube.com/embed/OBsEjp6m6Ng?autoplay=1&mute=1&loop=1&playlist=OBsEjp6m6Ng&controls=0&showinfo=0&rel=0&modestbranding=1"
+                    frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Navegación -->
+    <nav>
+        <div class="nav-container">
+            <ul>
+                <li><a href="../01_Introduccion.html">INTRODUCCIÓN</a></li>
+                <li><a href="gastronomia/02_subtema01.html">LA GASTRONOMÍA</a></li>
+                <li><a href="vestimenta/06_subtema02.html">VESTIMENTA</a></li>
+                <li><a href="artes/10_subtema03.html">ARTES</a></li>
+                <li><a href="14_conclusiones.html">CONCLUSIÓN</a></li>
+                <li><a href="15_agradecimiento.html">CIERRE</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Contenido Principal -->
+    <main>
+        <div class="cotizacion-container">
+            <!-- Botón de regresar -->
+            <button class="btn-regresar" onclick="window.location.href='tiendas.html'">
+                <svg class="flecha-icon" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd"/>
+                </svg>
+                Regresar a Tienda
+            </button>
+            
+            <div class="cotizacion-header">
+                <h1 class="cotizacion-title">COTIZACIÓN DE PRODUCTOS</h1>
+                <p class="cotizacion-subtitle">Selecciona tus productos y completa tus datos para recibir una cotización</p>
+            </div>
+            
+            <div class="areas-container">
+                <!-- Área 1: Exhibición de Productos -->
+                <div class="area-card">
+                    <div class="area-header">
+                        <h2 class="area-title">ÁREA DE EXHIBICIÓN DE PRODUCTOS</h2>
+                        <p class="area-description">Escoge las unidades de productos que desees comprar</p>
+                    </div>
+                    <div class="area-content">
+                        <div class="productos-lista">
+                            <!-- Producto 1: Flor de Fuego -->
+                            <div class="producto-item">
+                                <img src="../assets/flor_de_fuego_de_los_jardines_del_sol.jpg" 
+                                     alt="Flor de Fuego de los Jardines del Sol" class="producto-imagen">
+                                <div class="producto-info">
+                                    <h3 class="producto-nombre">✧ Flor de Fuego de los Jardines del Sol</h3>
+                                    <p class="producto-precio">S/ 220.00</p>
+                                </div>
+                                <div class="cantidad-container">
+                                    <input type="number" class="cantidad-input" id="cantidad1" value="0" min="0" onchange="calcularParciales()">
+                                </div>
+                                <div class="precio-parcial" id="parcial1">S/ 0.00</div>
+                            </div>
+                            
+                            <!-- Producto 2: Rishava -->
+                            <div class="producto-item">
+                                <img src="../assets/rishava_del_valle_de_seda.jpg" 
+                                     alt="Rishava del Valle de Seda" class="producto-imagen">
+                                <div class="producto-info">
+                                    <h3 class="producto-nombre">✧ Rishava del Valle de Seda</h3>
+                                    <p class="producto-precio">S/ 180.00</p>
+                                </div>
+                                <div class="cantidad-container">
+                                    <input type="number" class="cantidad-input" id="cantidad2" value="0" min="0" onchange="calcularParciales()">
+                                </div>
+                                <div class="precio-parcial" id="parcial2">S/ 0.00</div>
+                            </div>
+                            
+                            <!-- Producto 3: Virelya -->
+                            <div class="producto-item">
+                                <img src="../assets/virelya_de_las_esteparas_rojas.jpg" 
+                                     alt="Virelya de las Estepas Rojas" class="producto-imagen">
+                                <div class="producto-info">
+                                    <h3 class="producto-nombre">✧ Virelya de las Estepas Rojas</h3>
+                                    <p class="producto-precio">S/ 220.00</p>
+                                </div>
+                                <div class="cantidad-container">
+                                    <input type="number" class="cantidad-input" id="cantidad3" value="0" min="0" onchange="calcularParciales()">
+                                </div>
+                                <div class="precio-parcial" id="parcial3">S/ 0.00</div>
+                            </div>
+                            
+                            <!-- Producto 4: Zelmira -->
+                            <div class="producto-item">
+                                <img src="../assets/zelmira_del_bosque_de_esmeralda.jpg" 
+                                     alt="Zelmira del Bosque de Esmeralda" class="producto-imagen">
+                                <div class="producto-info">
+                                    <h3 class="producto-nombre">✧ Zelmira del Bosque de Esmeralda</h3>
+                                    <p class="producto-precio">S/ 180.00</p>
+                                </div>
+                                <div class="cantidad-container">
+                                    <input type="number" class="cantidad-input" id="cantidad4" value="0" min="0" onchange="calcularParciales()">
+                                </div>
+                                <div class="precio-parcial" id="parcial4">S/ 0.00</div>
+                            </div>
+                        </div>
+                        
+                        <div class="botones-container">
+                            <button class="btn-calcular" onclick="calcularTotal()">
+                                <svg class="calculadora-icon" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H4zm0 2h12v8H4V6zm2 2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 01-1 1H7a1 1 0 01-1-1V8zm4 0a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 01-1 1h-2a1 1 0 01-1-1V8zm-4 4a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 01-1 1H7a1 1 0 01-1-1v-2zm4 0a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 01-1 1h-2a1 1 0 01-1-1v-2z"/>
+                                </svg>
+                                CALCULAR
+                            </button>
+                            
+                            <div class="total-section" id="total-section" style="display: none;">
+                                <p class="total-label">TOTAL ACUMULADO</p>
+                                <p class="total-valor" id="total-general">S/ 0.00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Área 2: Pedido -->
+                <div class="area-card">
+                    <div class="area-header">
+                        <h2 class="area-title">ÁREA DE PEDIDO</h2>
+                        <p class="area-description">Registra tus datos personales para recibir la cotización</p>
+                    </div>
+                    <div class="area-content">
+                        <form class="formulario-pedido" id="formulario-pedido">
+                            <div class="form-group">
+                                <label for="apellidos" class="form-label">Apellidos y Nombres *</label>
+                                <input type="text" id="apellidos" name="apellidos" class="form-input" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email" class="form-label">Correo Electrónico *</label>
+                                <input type="email" id="email" name="email" class="form-input" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="direccion" class="form-label">Dirección de Entrega *</label>
+                                <textarea id="direccion" name="direccion" class="form-textarea" required></textarea>
+                            </div>
+                        </form>
+                        
+                        <div class="botones-container">
+                            <button class="btn-cotizar" onclick="enviarCotizacion()">
+                                <svg class="email-icon" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                                </svg>
+                                COTIZAR
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-social">
+                <a href="https://www.facebook.com/share/1Do9czenWR/" class="social-icon facebook" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Facebook_f_logo_%282019%29.svg/512px-Facebook_f_logo_%282019%29.svg.png"
+                        alt="Facebook" class="facebook-icon">
+                </a>
+                <a href="https://www.instagram.com/puruvianculture?igsh=MWF6aGxtMm9hdnJx" class="social-icon instagram"
+                    target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/512px-Instagram_icon.png"
+                        alt="Instagram" class="instagram-icon">
+                </a>
+                <a href="https://wa.me/51999123456" class="social-icon whatsapp" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/512px-WhatsApp.svg.png"
+                        alt="WhatsApp" class="whatsapp-icon">
+                </a>
+            </div>
+            <div class="footer-links">
+                <a href="../pages/consulta-docente.html" class="footer-link CONSULTA-FOOTER">
+                    <div class="footer-link-icon">
+                        <img src="../assets/consulta.png" alt="">
+                    </div>
+                    <span class="footer-link-text">Consulta del docente</span>
+                </a>
+                <a href="../pages/libro-reclamos.html" class="footer-link RECLAMOS-FOOTER">
+                    <div class="footer-link-icon"><img src="../assets/libro.webp" alt="libro"></div>
+                    <span class="footer-link-text">Libro de reclamos</span>
+                </a>
+                <a href="../pages/suscripcion.html" class="footer-link SUSCRIPCION-FOOTER">
+                    <div class="footer-link-icon">✉️</div>
+                    <span class="footer-link-text">Suscríbete al boletín</span>
+                </a>
+                <a href="tiendas.html" class="footer-link COTIZACION-FOOTER">
+                    <div class="footer-link-icon">
+                        <img src="../assets/tienda.png" alt="tienda">
+                    </div>
+                    <span class="footer-link-text">Tienda</span>
+                </a>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>&copy; 2025 Esencia de Nuestra Cultura Peruana - Ingeniería de Sistemas de Información - Ayacucho,
+                Perú</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Precios de los productos
+        const precios = [220.00, 180.00, 220.00, 180.00];
+        const nombresProductos = [
+            "✧ Flor de Fuego de los Jardines del Sol",
+            "✧ Rishava del Valle de Seda", 
+            "✧ Virelya de las Estepas Rojas",
+            "✧ Zelmira del Bosque de Esmeralda"
+        ];
+        
+        // Función para obtener parámetros de la URL
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+        
+        // Función para establecer cantidades iniciales basadas en el producto seleccionado
+        function establecerCantidadesIniciales() {
+            const productoSeleccionado = getUrlParameter('producto');
+            if (productoSeleccionado) {
+                const productoIndex = parseInt(productoSeleccionado) - 1;
+                for (let i = 1; i <= 4; i++) {
+                    const cantidadInput = document.getElementById(`cantidad${i}`);
+                    if (i - 1 === productoIndex) {
+                        cantidadInput.value = 1;
+                    } else {
+                        cantidadInput.value = 0;
+                    }
+                }
+                calcularParciales();
+            }
+        }
+        
+        function calcularParciales() {
+            for (let i = 1; i <= 4; i++) {
+                const cantidad = parseInt(document.getElementById(`cantidad${i}`).value) || 0;
+                const precio = precios[i - 1];
+                const parcial = cantidad * precio;
+                document.getElementById(`parcial${i}`).textContent = `S/ ${parcial.toFixed(2)}`;
+            }
+        }
+        
+        function calcularTotal() {
+            let totalGeneral = 0;
+            
+            // Calcular total de cada producto
+            for (let i = 1; i <= 4; i++) {
+                const cantidad = parseInt(document.getElementById(`cantidad${i}`).value) || 0;
+                const precio = precios[i - 1];
+                totalGeneral += cantidad * precio;
+            }
+            
+            // Mostrar total general
+            document.getElementById('total-general').textContent = `S/ ${totalGeneral.toFixed(2)}`;
+            document.getElementById('total-section').style.display = 'block';
+        }
+        
+        function enviarCotizacion() {
+            // Obtener datos del formulario
+            const apellidos = document.getElementById('apellidos').value;
+            const email = document.getElementById('email').value;
+            const direccion = document.getElementById('direccion').value;
+            
+            // Validar que todos los campos estén completos
+            if (!apellidos || !email || !direccion) {
+                alert('Por favor, completa todos los campos obligatorios.');
+                return;
+            }
+            
+            // Obtener cantidades y calcular total
+            let totalGeneral = 0;
+            let detallesProductos = [];
+            
+            for (let i = 1; i <= 4; i++) {
+                const cantidad = parseInt(document.getElementById(`cantidad${i}`).value) || 0;
+                if (cantidad > 0) {
+                    const precio = precios[i - 1];
+                    const parcial = cantidad * precio;
+                    totalGeneral += parcial;
+                    detallesProductos.push(`${nombresProductos[i-1]}: ${cantidad} x S/ ${precio.toFixed(2)} = S/ ${parcial.toFixed(2)}`);
+                }
+            }
+            
+            // Preparar el contenido del email
+            const asunto = 'Cotización - Esencia de Nuestra Cultura Peruana';
+            const cuerpo = `
+COTIZACIÓN DE PRODUCTOS
+
+DATOS DEL CLIENTE:
+- Apellidos y Nombres: ${apellidos}
+- Correo Electrónico: ${email}
+- Dirección de Entrega: ${direccion}
+
+DETALLE DE PRODUCTOS:
+${detallesProductos.join('\n')}
+
+TOTAL: S/ ${totalGeneral.toFixed(2)}
+
+---
+Este es un mensaje automático del sistema de cotizaciones.
+            `;
+            
+            // Enviar email usando mailto
+            const mailtoLink = `mailto:joserodriguez@elp.edu.pe?cc=${email}&subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+            
+            // Abrir el cliente de email predeterminado
+            window.open(mailtoLink);
+            
+            // Mostrar mensaje de confirmación
+            alert('Cotización enviada exitosamente. Se abrirá tu cliente de email con los detalles de la cotización.');
+        }
+        
+        // Inicializar cuando se carga la página
+        document.addEventListener('DOMContentLoaded', function() {
+            establecerCantidadesIniciales();
+        });
+        
+        // Calcular parciales iniciales
+        calcularParciales();
+        
+        // Oculta el enlace de la página actual en el footer
+        const path = window.location.pathname;
+        if (path.includes('consulta-docente')) {
+            document.querySelector('.CONSULTA-FOOTER').style.display = 'none';
+        } else if (path.includes('libro-reclamos')) {
+            document.querySelector('.RECLAMOS-FOOTER').style.display = 'none';
+        } else if (path.includes('suscripcion')) {
+            document.querySelector('.SUSCRIPCION-FOOTER').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

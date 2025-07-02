@@ -1,0 +1,100 @@
+/* Estilos para el Libro de Reclamaciones */
+.libro-form {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 40px 32px 32px 32px;
+  border-radius: 16px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+}
+.libro-form .section {
+  margin-bottom: 32px;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 28px 20px;
+}
+.libro-form label {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 7px;
+  font-size: 15px;
+}
+.libro-form input[type="text"],
+.libro-form input[type="email"],
+.libro-form input[type="tel"],
+.libro-form input[type="number"],
+.libro-form input[type="date"],
+.libro-form textarea,
+.libro-form select {
+  width: 100%;
+  padding: 11px 10px;
+  border: 1.5px solid #c81d11;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  background: #fafafa;
+  transition: border-color 0.3s;
+}
+.libro-form input:focus,
+.libro-form textarea:focus,
+.libro-form select:focus {
+  outline: none;
+  border-color: #8c0e06;
+  background: #fff;
+}
+.libro-form .form-group {
+  margin-bottom: 18px;
+}
+.libro-form .section-title {
+  font-size: 17px;
+  font-weight: bold;
+  color: #c81d11;
+  margin-bottom: 18px;
+  padding-bottom: 7px;
+  border-bottom: 2px solid #c81d11;
+}
+.libro-form .checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 8px;
+}
+.libro-form .legal-text {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.5;
+  margin-top: 24px;
+  padding: 18px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+.libro-form .char-counter {
+  font-size: 12px;
+  color: #666;
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+}
+.libro-form .submit-btn {
+  background-color: #c81d11;
+  color: #fff;
+  padding: 14px 44px;
+  border: none;
+  border-radius: 6px;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-top: 10px;
+}
+.libro-form .submit-btn:hover {
+  background-color: #8c0e06;
+}
+@media (max-width: 700px) {
+  .libro-form {
+    padding: 18px 5px 18px 5px;
+  }
+  .libro-form .section {
+    padding: 14px 5px;
+  }
+}

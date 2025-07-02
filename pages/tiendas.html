@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda - Esencia de Nuestra Cultura Peruana</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <style>
+        .tienda-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .tienda-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        
+        .tienda-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #92400e;
+            margin-bottom: 8px;
+        }
+        
+        .tienda-subtitle {
+            font-size: 1.125rem;
+            color: #d97706;
+        }
+        
+        .productos-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            row-gap: 66px;
+            margin-bottom: 40px;
+        }
+        
+        .producto-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #fed7aa;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            width: 400px;
+            margin: 0 auto;
+        }
+        
+        .producto-card:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        .producto-imagen-container {
+            position: relative;
+            height: 400px;
+            width: 60%;
+            overflow: hidden;
+            background-color: #f3f4f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
+        
+        .producto-imagen {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .producto-imagen-container:empty::before {
+            content: "🛍️";
+            font-size: 3rem;
+            color: #d1d5db;
+        }
+        
+        .producto-content {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+        
+        .producto-nombre {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #92400e;
+            margin-bottom: 8px;
+        }
+        
+        .producto-descripcion {
+            color: #6b7280;
+            margin-bottom: 16px;
+            line-height: 1.5;
+            flex: 1;
+        }
+        
+        .producto-precio {
+            font-size: 1.125rem;
+            font-weight: bold;
+            color: #059669;
+            margin-bottom: 16px;
+        }
+        
+        .btn-me-interesa {
+            width: 100%;
+            background: #ea580c;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .btn-me-interesa:hover {
+            background: #c2410c;
+            transform: translateY(-1px);
+        }
+        
+        @media (max-width: 768px) {
+            .productos-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .producto-card {
+                height: auto;
+            }
+            
+            .tienda-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo-container" style="border-radius: 15px;">
+                <img src="https://res.cloudinary.com/dbyahumwd/image/upload/v1749886070/logo_yzkq0e.png"
+                    alt="Logo Cultura Peruana" class="logo">
+            </div>
+            <div class="header-image-container">
+                <img src="https://cdn.www.gob.pe/uploads/document/file/6469227/970589-la-cultura-peruana-resalta-en-el-latinoamerica-fest-comida-y-cultura-de-berna.png"
+                    alt="Cultura Peruana" class="header-image">
+            </div>
+            <div class="header-video-container">
+                <iframe class="header-video"
+                    src="https://www.youtube.com/embed/OBsEjp6m6Ng?autoplay=1&mute=1&loop=1&playlist=OBsEjp6m6Ng&controls=0&showinfo=0&rel=0&modestbranding=1"
+                    frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Navegación -->
+    <nav>
+        <div class="nav-container">
+            <ul>
+                <li><a href="../01_Introduccion.html">INTRODUCCIÓN</a></li>
+                <li><a href="gastronomia/02_subtema01.html">LA GASTRONOMÍA</a></li>
+                <li><a href="vestimenta/06_subtema02.html">VESTIMENTA</a></li>
+                <li><a href="artes/10_subtema03.html">ARTES</a></li>
+                <li><a href="14_conclusiones.html">CONCLUSIÓN</a></li>
+                <li><a href="15_agradecimiento.html">CIERRE</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Contenido Principal -->
+    <main>
+        <div class="tienda-container">
+            <div class="tienda-header">
+                <h1 class="tienda-title">Ropa Tradicional de Perú</h1>
+                <p class="tienda-subtitle">Vestimenta auténtica de nuestra cultura</p>
+            </div>
+            
+            <div class="productos-grid">
+                <!-- Producto 1: Pollera -->
+                <div class="producto-card">
+                    <div class="producto-imagen-container">
+                        <img src="../assets/flor_de_fuego_de_los_jardines_del_sol.jpg" 
+                             alt="Flor de Fuego de los Jardines del Sol" class="producto-imagen">
+                    </div>
+                    <div class="producto-content">
+                        <h3 class="producto-nombre">✧ Flor de Fuego de los Jardines del Sol</h3>
+                        <p class="producto-descripcion">Un conjunto explosivo y veraniego, como un jardín encantado bailando al ritmo de tambores exóticos. Ideal para las hijas del verano.</p>
+                        <div class="producto-precio">S/ 220.00</div>
+                        <button class="btn-me-interesa" onclick="window.location.href='cotizacion.html?producto=1'">Me Interesa</button>
+                    </div>
+                </div>
+                
+                <!-- Producto 2: Chaleco -->
+                <div class="producto-card">
+                    <div class="producto-imagen-container">
+                        <img src="../assets/rishava_del_valle_de_seda.jpg" 
+                             alt="Rishava del Valle de Seda" class="producto-imagen">
+                    </div>
+                    <div class="producto-content">
+                        <h3 class="producto-nombre">✧ Rishava del Valle de Seda</h3>
+                        <p class="producto-descripcion">Inspiración mitológica que mezcla lo ceremonial y lo festivo. El drapeado en un solo hombro evoca danzas ancestrales bajo lunas naranjas.</p>
+                        <div class="producto-precio">S/ 180.00</div>
+                        <button class="btn-me-interesa" onclick="window.location.href='cotizacion.html?producto=2'">Me Interesa</button>
+                    </div>
+                </div>
+                
+                <!-- Producto 3: Sombrero -->
+                <div class="producto-card">
+                    <div class="producto-imagen-container">
+                        <img src="../assets/virelya_de_las_esteparas_rojas.jpg" 
+                             alt="Virelya de las Estepas Rojas" class="producto-imagen">
+                    </div>
+                    <div class="producto-content">
+                        <h3 class="producto-nombre">✧ Virelya de las Estepas Rojas</h3>
+                        <p class="producto-descripcion">Un vestido que evoca las tierras antiguas y la nobleza eslava, con mangas abullonadas como alas de halcón y bordados que parecen contar leyendas en código geométrico.</p>
+                        <div class="producto-precio">S/ 220.00</div>
+                        <button class="btn-me-interesa" onclick="window.location.href='cotizacion.html?producto=3'">Me Interesa</button>
+                    </div>
+                </div>
+                
+                <!-- Producto 4: Manta -->
+                <div class="producto-card">
+                    <div class="producto-imagen-container">
+                        <img src="../assets/zelmira_del_bosque_de_esmeralda.jpg" 
+                             alt="Zelmira del Bosque de Esmeralda" class="producto-imagen">
+                    </div>
+                    <div class="producto-content">
+                        <h3 class="producto-nombre">✧ Zelmira del Bosque de Esmeralda</h3>
+                        <p class="producto-descripcion">Un corset hechizado por espíritus verdes, con mangas que parecen hojas de roble tejido por ninfas. Poder y misterio en un solo atuendo.</p>
+                        <div class="producto-precio">S/ 180.00</div>
+                        <button class="btn-me-interesa" onclick="window.location.href='cotizacion.html?producto=4'">Me Interesa</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-social">
+                <a href="https://www.facebook.com/share/1Do9czenWR/" class="social-icon facebook" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Facebook_f_logo_%282019%29.svg/512px-Facebook_f_logo_%282019%29.svg.png"
+                        alt="Facebook" class="facebook-icon">
+                </a>
+                <a href="https://www.instagram.com/puruvianculture?igsh=MWF6aGxtMm9hdnJx" class="social-icon instagram"
+                    target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/512px-Instagram_icon.png"
+                        alt="Instagram" class="instagram-icon">
+                </a>
+                <a href="https://wa.me/51999123456" class="social-icon whatsapp" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/512px-WhatsApp.svg.png"
+                        alt="WhatsApp" class="whatsapp-icon">
+                </a>
+            </div>
+            <div class="footer-links">
+                <a href="../pages/consulta-docente.html" class="footer-link CONSULTA-FOOTER">
+                    <div class="footer-link-icon">
+                        <img src="../assets/consulta.png" alt="">
+                    </div>
+                    <span class="footer-link-text">Consulta del docente</span>
+                </a>
+                <a href="../pages/libro-reclamos.html" class="footer-link RECLAMOS-FOOTER">
+                    <div class="footer-link-icon"><img src="../assets/libro.webp" alt="libro"></div>
+                    <span class="footer-link-text">Libro de reclamos</span>
+                </a>
+                <a href="../pages/suscripcion.html" class="footer-link SUSCRIPCION-FOOTER">
+                    <div class="footer-link-icon">✉️</div>
+                    <span class="footer-link-text">Suscríbete al boletín</span>
+                </a>
+                <a href="tiendas.html" class="footer-link COTIZACION-FOOTER">
+                    <div class="footer-link-icon">
+                        <img src="../assets/tienda.png" alt="tienda">
+                    </div>
+                    <span class="footer-link-text">Tienda</span>
+                </a>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>&copy; 2025 Esencia de Nuestra Cultura Peruana - Ingeniería de Sistemas de Información - Ayacucho,
+                Perú</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Oculta el enlace de la página actual en el footer
+        const path = window.location.pathname;
+        if (path.includes('consulta-docente')) {
+            document.querySelector('.CONSULTA-FOOTER').style.display = 'none';
+        } else if (path.includes('libro-reclamos')) {
+            document.querySelector('.RECLAMOS-FOOTER').style.display = 'none';
+        } else if (path.includes('suscripcion')) {
+            document.querySelector('.SUSCRIPCION-FOOTER').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

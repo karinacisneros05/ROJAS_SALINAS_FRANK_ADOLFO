@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Cotización - Esencia de Nuestra Cultura Peruana</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <style>
+        body {
+            min-height: 100vh;
+        }
+        
+        .formulario-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .formulario-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        
+        .formulario-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #1e40af;
+            margin-bottom: 8px;
+        }
+        
+        .formulario-subtitle {
+            font-size: 1.125rem;
+            color: #3b82f6;
+        }
+        
+        .resumen-cotizacion {
+            background: #fef3c7;
+            border: 1px solid #f59e0b;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .resumen-title {
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 8px;
+        }
+        
+        .resumen-productos {
+            margin-bottom: 8px;
+        }
+        
+        .resumen-total {
+            font-weight: bold;
+            color: #059669;
+            font-size: 1.125rem;
+        }
+        
+        .formulario-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border: 2px solid #bfdbfe;
+            overflow: hidden;
+        }
+        
+        .formulario-header-card {
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .formulario-title-card {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .formulario-description {
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+        
+        .formulario-content {
+            padding: 24px;
+        }
+        
+        .formulario-pedido {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: #374151;
+            font-size: 0.875rem;
+        }
+        
+        .form-input {
+            padding: 12px;
+            border: 2px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: white;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+        
+        .form-textarea {
+            padding: 12px;
+            border: 2px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: white;
+            resize: vertical;
+            min-height: 80px;
+        }
+        
+        .form-textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+        
+        .botones-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            margin-top: 24px;
+        }
+        
+        .btn-cotizar {
+            background: #dc2626;
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.125rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 200px;
+            justify-content: center;
+        }
+        
+        .btn-cotizar:hover {
+            background: #b91c1c;
+            transform: translateY(-1px);
+        }
+        
+        .email-icon {
+            width: 20px;
+            height: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .formulario-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo-container" style="border-radius: 15px;">
+                <img src="https://res.cloudinary.com/dbyahumwd/image/upload/v1749886070/logo_yzkq0e.png"
+                    alt="Logo Cultura Peruana" class="logo">
+            </div>
+            <div class="header-image-container">
+                <img src="https://cdn.www.gob.pe/uploads/document/file/6469227/970589-la-cultura-peruana-resalta-en-el-latinoamerica-fest-comida-y-cultura-de-berna.png"
+                    alt="Cultura Peruana" class="header-image">
+            </div>
+            <div class="header-video-container">
+                <iframe class="header-video"
+                    src="https://www.youtube.com/embed/OBsEjp6m6Ng?autoplay=1&mute=1&loop=1&playlist=OBsEjp6m6Ng&controls=0&showinfo=0&rel=0&modestbranding=1"
+                    frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Navegación -->
+    <nav>
+        <div class="nav-container">
+            <ul>
+                <li><a href="../01_Introduccion.html">INTRODUCCIÓN</a></li>
+                <li><a href="gastronomia/02_subtema01.html">LA GASTRONOMÍA</a></li>
+                <li><a href="vestimenta/06_subtema02.html">VESTIMENTA</a></li>
+                <li><a href="artes/10_subtema03.html">ARTES</a></li>
+                <li><a href="14_conclusiones.html">CONCLUSIÓN</a></li>
+                <li><a href="15_agradecimiento.html">CIERRE</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Contenido Principal -->
+    <main>
+        <div class="formulario-container">
+            <div class="formulario-header">
+                <h1 class="formulario-title">FORMULARIO DE COTIZACIÓN</h1>
+                <p class="formulario-subtitle">Completa tus datos para recibir una cotización personalizada</p>
+            </div>
+            
+            <!-- Resumen de la cotización -->
+            <div class="resumen-cotizacion" id="resumen-cotizacion" style="display: none;">
+                <h3 class="resumen-title">Resumen de tu cotización:</h3>
+                <div class="resumen-productos" id="resumen-productos"></div>
+                <div class="resumen-total" id="resumen-total"></div>
+            </div>
+            
+            <div class="formulario-card">
+                <div class="formulario-header-card">
+                    <h2 class="formulario-title-card">ÁREA DE PEDIDO</h2>
+                    <p class="formulario-description">Registra tus datos personales para recibir la cotización</p>
+                </div>
+                <div class="formulario-content">
+                    <form class="formulario-pedido" id="formulario-pedido">
+                        <div class="form-group">
+                            <label for="apellidos" class="form-label">Apellidos y Nombres *</label>
+                            <input type="text" id="apellidos" name="apellidos" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" class="form-label">Correo Electrónico *</label>
+                            <input type="email" id="email" name="email" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="direccion" class="form-label">Dirección de Entrega *</label>
+                            <textarea id="direccion" name="direccion" class="form-textarea" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="comentarios" class="form-label">Comentarios adicionales</label>
+                            <textarea id="comentarios" name="comentarios" class="form-textarea" placeholder="Agrega cualquier comentario o solicitud especial..."></textarea>
+                        </div>
+                    </form>
+                    
+                    <div class="botones-container">
+                        <button class="btn-cotizar" onclick="enviarCotizacion()">
+                            <svg class="email-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                            </svg>
+                            COTIZAR
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-social">
+                <a href="https://www.facebook.com/share/1Do9czenWR/" class="social-icon facebook" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Facebook_f_logo_%282019%29.svg/512px-Facebook_f_logo_%282019%29.svg.png"
+                        alt="Facebook" class="facebook-icon">
+                </a>
+                <a href="https://www.instagram.com/puruvianculture?igsh=MWF6aGxtMm9hdnJx" class="social-icon instagram"
+                    target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/512px-Instagram_icon.png"
+                        alt="Instagram" class="instagram-icon">
+                </a>
+                <a href="https://wa.me/51999123456" class="social-icon whatsapp" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/512px-WhatsApp.svg.png"
+                        alt="WhatsApp" class="whatsapp-icon">
+                </a>
+            </div>
+            <div class="footer-links">
+                <a href="../pages/consulta-docente.html" class="footer-link CONSULTA-FOOTER">
+                    <div class="footer-link-icon">
+                        <img src="../assets/consulta.png" alt="">
+                    </div>
+                    <span class="footer-link-text">Consulta del docente</span>
+                </a>
+                <a href="../pages/libro-reclamos.html" class="footer-link RECLAMOS-FOOTER">
+                    <div class="footer-link-icon"><img src="../assets/libro.webp" alt="libro"></div>
+                    <span class="footer-link-text">Libro de reclamos</span>
+                </a>
+                <a href="../pages/suscripcion.html" class="footer-link SUSCRIPCION-FOOTER">
+                    <div class="footer-link-icon">✉️</div>
+                    <span class="footer-link-text">Suscríbete al boletín</span>
+                </a>
+                <a href="tiendas.html" class="footer-link COTIZACION-FOOTER">
+                    <div class="footer-link-icon">
+                        <img src="../assets/tienda.png" alt="tienda">
+                    </div>
+                    <span class="footer-link-text">Tienda</span>
+                </a>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>&copy; 2025 Esencia de Nuestra Cultura Peruana - Ingeniería de Sistemas de Información - Ayacucho,
+                Perú</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Variables globales para los datos de cotización
+        let cotizacionDetalles = null;
+        
+        function cargarDatosCotizacion() {
+            const datosGuardados = localStorage.getItem('cotizacionDetalles');
+            if (datosGuardados) {
+                cotizacionDetalles = JSON.parse(datosGuardados);
+                mostrarResumenCotizacion();
+            }
+        }
+        
+        function mostrarResumenCotizacion() {
+            if (cotizacionDetalles && cotizacionDetalles.productos.length > 0) {
+                const resumenProductos = document.getElementById('resumen-productos');
+                const resumenTotal = document.getElementById('resumen-total');
+                const resumenCotizacion = document.getElementById('resumen-cotizacion');
+                
+                resumenProductos.innerHTML = cotizacionDetalles.productos.map(producto => 
+                    `<div>• ${producto}</div>`
+                ).join('');
+                
+                resumenTotal.textContent = `TOTAL: S/ ${cotizacionDetalles.total.toFixed(2)}`;
+                resumenCotizacion.style.display = 'block';
+            }
+        }
+        
+        function enviarCotizacion() {
+            // Obtener datos del formulario
+            const apellidos = document.getElementById('apellidos').value;
+            const email = document.getElementById('email').value;
+            const direccion = document.getElementById('direccion').value;
+            const comentarios = document.getElementById('comentarios').value;
+            
+            // Validar que todos los campos obligatorios estén completos
+            if (!apellidos || !email || !direccion) {
+                alert('Por favor, completa todos los campos obligatorios.');
+                return;
+            }
+            
+            // Preparar el contenido del email
+            const asunto = 'Cotización - Esencia de Nuestra Cultura Peruana';
+            let cuerpo = `
+COTIZACIÓN DE PRODUCTOS
+
+DATOS DEL CLIENTE:
+- Apellidos y Nombres: ${apellidos}
+- Correo Electrónico: ${email}
+- Dirección de Entrega: ${direccion}
+`;
+
+            if (cotizacionDetalles && cotizacionDetalles.productos.length > 0) {
+                cuerpo += `
+DETALLE DE PRODUCTOS:
+${cotizacionDetalles.productos.join('\n')}
+
+TOTAL: S/ ${cotizacionDetalles.total.toFixed(2)}
+`;
+            }
+            
+            if (comentarios) {
+                cuerpo += `
+COMENTARIOS ADICIONALES:
+${comentarios}
+`;
+            }
+            
+            cuerpo += `
+---
+Este es un mensaje automático del sistema de cotizaciones.
+            `;
+            
+            // Enviar email usando mailto
+            const mailtoLink = `mailto:joserodriguez@elp.edu.pe?cc=${email}&subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+            
+            // Abrir el cliente de email predeterminado
+            window.open(mailtoLink);
+            
+            // Mostrar mensaje de confirmación
+            alert('Cotización enviada exitosamente. Se abrirá tu cliente de email con los detalles de la cotización.');
+            
+            // Limpiar localStorage después de enviar
+            localStorage.removeItem('cotizacionDetalles');
+        }
+        
+        // Cargar datos cuando se carga la página
+        document.addEventListener('DOMContentLoaded', function() {
+            cargarDatosCotizacion();
+        });
+        
+        // Oculta el enlace de la página actual en el footer
+        const path = window.location.pathname;
+        if (path.includes('consulta-docente')) {
+            document.querySelector('.CONSULTA-FOOTER').style.display = 'none';
+        } else if (path.includes('libro-reclamos')) {
+            document.querySelector('.RECLAMOS-FOOTER').style.display = 'none';
+        } else if (path.includes('suscripcion')) {
+            document.querySelector('.SUSCRIPCION-FOOTER').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

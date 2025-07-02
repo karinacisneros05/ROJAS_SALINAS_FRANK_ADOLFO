@@ -1,0 +1,64 @@
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Contenedor global para centrar contenido */
+.global-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #c81d11;
+}
+
+a {
+    text-decoration: none;
+    color: #c81d11;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: #8c0e06;
+}
+
+.btn-ver-mas {
+    display: inline-block;
+    background-color: #c81d11;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.btn-ver-mas:hover {
+    background-color: #8c0e06;
+    color: white;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.container {
+    width: 90%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 20px;
+}
