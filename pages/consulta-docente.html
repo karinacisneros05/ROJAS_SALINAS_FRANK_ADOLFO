@@ -155,12 +155,61 @@
             const correo = document.getElementById('correo').value.trim();
             const mensaje = document.getElementById('mensaje').value.trim();
             const tipoConsulta = document.getElementById('tipo-consulta').value.trim();
+
+            // Validar que todos los campos estén llenos
             if (!apellidoPaterno || !apellidoMaterno || !nombre || !correo || !mensaje || !tipoConsulta) {
                 alert('Por favor, complete todos los campos y seleccione un tipo de consulta.');
                 return false;
             }
+
+            // Validar que nombres y apellidos solo contengan letras, espacios y acentos
+            const soloTextoRegex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
+
+            if (!soloTextoRegex.test(apellidoPaterno)) {
+                alert('El Apellido Paterno solo debe contener letras, no números ni caracteres especiales.');
+                return false;
+            }
+
+            if (!soloTextoRegex.test(apellidoMaterno)) {
+                alert('El Apellido Materno solo debe contener letras, no números ni caracteres especiales.');
+                return false;
+            }
+
+            if (!soloTextoRegex.test(nombre)) {
+                alert('El Nombre solo debe contener letras, no números ni caracteres especiales.');
+                return false;
+            }
+
             return true;
         }
+
+        // Función para validar entrada en tiempo real (solo letras)
+        function validarSoloTexto(event) {
+            const char = String.fromCharCode(event.which);
+            const regex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]$/;
+            
+            if (!regex.test(char)) {
+                event.preventDefault();
+                return false;
+            }
+        }
+
+        // Agregar validación en tiempo real cuando la página carga
+        document.addEventListener('DOMContentLoaded', function() {
+            const camposTexto = ['apellido-paterno', 'apellido-materno', 'nombre'];
+            
+            camposTexto.forEach(function(campoId) {
+                const campo = document.getElementById(campoId);
+                
+                // Prevenir entrada de números y caracteres especiales
+                campo.addEventListener('keypress', validarSoloTexto);
+                
+                // Limpiar cualquier número que se pegue
+                campo.addEventListener('input', function() {
+                    this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
+                });
+            });
+        });
     </script>
     </body>
 </html>

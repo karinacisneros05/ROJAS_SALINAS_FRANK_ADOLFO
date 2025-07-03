@@ -216,6 +216,256 @@
       <p>&copy; 2025 Esencia de Nuestra Cultura Peruana - Ingeniería de Sistemas de Información - Ayacucho, Perú</p>
     </div>
   </footer>
+  
+  <script>
+    // Validaciones inteligentes para el libro de reclamos
+    document.addEventListener('DOMContentLoaded', function() {
+      
+      // 1. Validación del campo nombre (solo letras, espacios y acentos)
+      const campoNombre = document.querySelector('input[name="nombre"]');
+      if (campoNombre) {
+        campoNombre.addEventListener('keypress', function(e) {
+          const char = String.fromCharCode(e.which);
+          const regex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]$/;
+          if (!regex.test(char)) {
+            e.preventDefault();
+          }
+        });
+        
+        campoNombre.addEventListener('input', function() {
+          this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
+        });
+      }
+
+      // 2. Validación del número de documento según el tipo
+      const tipoDocumento = document.querySelector('select[name="tipo_documento"]');
+      const numeroDocumento = document.querySelector('input[name="numero_documento"]');
+      
+      if (tipoDocumento && numeroDocumento) {
+        tipoDocumento.addEventListener('change', function() {
+          numeroDocumento.value = ''; // Limpiar campo al cambiar tipo
+          numeroDocumento.placeholder = getPlaceholderForDocument(this.value);
+        });
+        
+        numeroDocumento.addEventListener('input', function() {
+          const tipo = tipoDocumento.value;
+          validateDocumentNumber(this, tipo);
+        });
+      }
+
+      // 3. Validación del teléfono (solo números, 9 dígitos para celular o 7 para fijo)
+      const campoTelefono = document.querySelector('input[name="telefono"]');
+      if (campoTelefono) {
+        campoTelefono.addEventListener('keypress', function(e) {
+          const char = String.fromCharCode(e.which);
+          if (!/[0-9]/.test(char)) {
+            e.preventDefault();
+          }
+        });
+        
+        campoTelefono.addEventListener('input', function() {
+          this.value = this.value.replace(/[^0-9]/g, '');
+          if (this.value.length > 9) {
+            this.value = this.value.substring(0, 9);
+          }
+        });
+      }
+
+      // 4. Validación de checkboxes mutuamente excluyentes para tipo de bien
+      const checkboxes = document.querySelectorAll('input[name="tipo_bien"]');
+      checkboxes.forEach(function(checkbox) {
+        checkbox.addEventListener('change', function() {
+          if (this.checked) {
+            checkboxes.forEach(function(other) {
+              if (other !== checkbox) {
+                other.checked = false;
+              }
+            });
+          }
+        });
+      });
+
+      // 5. Contador de caracteres para textareas
+      const textareas = document.querySelectorAll('textarea[maxlength]');
+      textareas.forEach(function(textarea) {
+        addCharacterCounter(textarea);
+      });
+
+      // 6. Validación del formulario al enviar
+      const form = document.querySelector('.libro-form');
+      if (form) {
+        form.addEventListener('submit', function(e) {
+          if (!validateForm()) {
+            e.preventDefault();
+          }
+        });
+      }
+    });
+
+    // Función para obtener placeholder según tipo de documento
+    function getPlaceholderForDocument(tipo) {
+      switch(tipo) {
+        case 'DNI':
+          return 'Ingrese 8 dígitos';
+        case 'CE':
+          return 'Ingrese número de carné';
+        case 'RUC':
+          return 'Ingrese 11 dígitos';
+        case 'PASAPORTE':
+          return 'Ingrese número de pasaporte';
+        case 'CARNET_ESTUDIANTIL':
+          return 'Ingrese número de carnet';
+        default:
+          return 'Ingrese número de documento';
+      }
+    }
+
+    // Función para validar número de documento según tipo
+    function validateDocumentNumber(input, tipo) {
+      let value = input.value.replace(/[^a-zA-Z0-9]/g, ''); // Permitir letras y números
+      
+      switch(tipo) {
+        case 'DNI':
+          value = value.replace(/[^0-9]/g, ''); // Solo números
+          if (value.length > 8) {
+            value = value.substring(0, 8);
+          }
+          break;
+        case 'RUC':
+          value = value.replace(/[^0-9]/g, ''); // Solo números
+          if (value.length > 11) {
+            value = value.substring(0, 11);
+          }
+          break;
+        case 'CE':
+        case 'PASAPORTE':
+        case 'CARNET_ESTUDIANTIL':
+          // Permitir letras y números, máximo 15 caracteres
+          if (value.length > 15) {
+            value = value.substring(0, 15);
+          }
+          break;
+      }
+      
+      input.value = value;
+    }
+
+    // Función para agregar contador de caracteres a textareas
+    function addCharacterCounter(textarea) {
+      const maxLength = textarea.getAttribute('maxlength');
+      if (maxLength) {
+        const counter = document.createElement('div');
+        counter.style.cssText = 'text-align: right; font-size: 12px; color: #666; margin-top: 5px;';
+        counter.textContent = `0/${maxLength}`;
+        
+        textarea.parentNode.appendChild(counter);
+        
+        textarea.addEventListener('input', function() {
+          const currentLength = this.value.length;
+          counter.textContent = `${currentLength}/${maxLength}`;
+          
+          if (currentLength > maxLength * 0.9) {
+            counter.style.color = '#c81d11';
+          } else {
+            counter.style.color = '#666';
+          }
+        });
+      }
+    }
+
+    // Función para validar todo el formulario
+    function validateForm() {
+      const errors = [];
+      
+      // Validar nombre
+      const nombre = document.querySelector('input[name="nombre"]').value.trim();
+      if (!nombre) {
+        errors.push('El nombre es obligatorio.');
+      } else if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(nombre)) {
+        errors.push('El nombre solo debe contener letras.');
+      }
+
+      // Validar domicilio
+      const domicilio = document.querySelector('input[name="domicilio"]').value.trim();
+      if (!domicilio) {
+        errors.push('El domicilio es obligatorio.');
+      }
+
+      // Validar tipo de documento
+      const tipoDoc = document.querySelector('select[name="tipo_documento"]').value;
+      if (!tipoDoc) {
+        errors.push('Debe seleccionar un tipo de documento.');
+      }
+
+      // Validar número de documento
+      const numeroDoc = document.querySelector('input[name="numero_documento"]').value.trim();
+      if (!numeroDoc) {
+        errors.push('El número de documento es obligatorio.');
+      } else {
+        if (tipoDoc === 'DNI' && (numeroDoc.length !== 8 || !/^[0-9]+$/.test(numeroDoc))) {
+          errors.push('El DNI debe tener exactamente 8 dígitos.');
+        }
+        if (tipoDoc === 'RUC' && (numeroDoc.length !== 11 || !/^[0-9]+$/.test(numeroDoc))) {
+          errors.push('El RUC debe tener exactamente 11 dígitos.');
+        }
+      }
+
+      // Validar teléfono
+      const telefono = document.querySelector('input[name="telefono"]').value.trim();
+      if (!telefono) {
+        errors.push('El teléfono es obligatorio.');
+      } else if (!/^[0-9]{7,9}$/.test(telefono)) {
+        errors.push('El teléfono debe tener entre 7 y 9 dígitos.');
+      }
+
+      // Validar correo
+      const correo = document.querySelector('input[name="correo"]').value.trim();
+      if (!correo) {
+        errors.push('El correo electrónico es obligatorio.');
+      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo)) {
+        errors.push('El formato del correo electrónico no es válido.');
+      }
+
+      // Validar tipo de bien
+      const tipoBien = document.querySelector('input[name="tipo_bien"]:checked');
+      if (!tipoBien) {
+        errors.push('Debe seleccionar si es producto o servicio.');
+      }
+
+      // Validar tipo de reclamación
+      const tipoReclamo = document.querySelector('input[name="tipo_reclamacion"]:checked');
+      if (!tipoReclamo) {
+        errors.push('Debe seleccionar si es reclamo o queja.');
+      }
+
+      // Validar detalle
+      const detalle = document.querySelector('textarea[name="detalle"]').value.trim();
+      if (!detalle) {
+        errors.push('El detalle de la reclamación es obligatorio.');
+      } else if (detalle.length < 20) {
+        errors.push('El detalle debe tener al menos 20 caracteres.');
+      }
+
+      // Mostrar errores si los hay
+      if (errors.length > 0) {
+        alert('Por favor corrija los siguientes errores:\n\n' + errors.join('\n'));
+        return false;
+      }
+
+      return true;
+    }
+
+    // Función mejorada para el botón de imprimir
+    function imprimirFormulario() {
+      // Validar formulario antes de imprimir
+      if (!validateForm()) {
+        alert('Por favor complete correctamente todos los campos antes de imprimir.');
+        return;
+      }
+      
+      window.print();
+    }
+  </script>
 </body>
 
 </html>

@@ -87,24 +87,24 @@
                 <div class="form-grid">
                     <div class="form-group">
                         <label for="apellido-paterno">Apellido paterno</label>
-                        <input type="text" id="apellido-paterno" name="apellido-paterno">
+                        <input type="text" id="apellido-paterno" name="apellido-paterno" required>
                     </div>
                     <div class="form-group">
                         <label for="apellido-materno">Apellido materno</label>
-                        <input type="text" id="apellido-materno" name="apellido-materno">
+                        <input type="text" id="apellido-materno" name="apellido-materno" required>
                     </div>
                     <div class="form-group">
                         <label for="nombre">Nombre</label>
-                        <input type="text" id="nombre" name="nombre">
+                        <input type="text" id="nombre" name="nombre" required>
                     </div>
                     <div class="form-group">
                         <label for="correo">Correo electrónico</label>
-                        <input type="email" id="correo" name="correo">
+                        <input type="email" id="correo" name="correo" required>
                     </div>
                 </div>
                 <div class="form-group" style="margin-bottom: 20px;">
                     <label for="tipo-suscripcion">¿Para qué beneficio te suscribes?</label>
-                    <select id="tipo-suscripcion" name="tipo-suscripcion" style="padding: 12px; border: 2px solid #4a90e2; border-radius: 4px; font-size: 14px; font-family: Arial, sans-serif; width: 100%; background: white;">
+                    <select id="tipo-suscripcion" name="tipo-suscripcion" required style="padding: 12px; border: 2px solid #4a90e2; border-radius: 4px; font-size: 14px; font-family: Arial, sans-serif; width: 100%; background: white;">
                         <option value="">Selecciona el beneficio que más te interesa</option>
                         <option value="noticias">📰 Noticias Relevantes</option>
                         <option value="ofertas">💰 Ofertas Especiales</option>
@@ -143,8 +143,8 @@
                 </a>
             </div>
             <div class="footer-links">
-                <a href="../consulta-docente.html" class="footer-link CONSULTA-FOOTER">
-                    <div class="footer-link-icon">
+                <a href="../pages/consulta-docente.html" class="footer-link CONSULTA-FOOTER">
+                    <div class="footer-link-icon">  
                         <img src="../assets/consulta.png" alt="">
                     </div>
                     <span class="footer-link-text">Consulta del docente</span>
@@ -182,18 +182,164 @@
         }
       </script>
       <script>
-        function validarSuscripcion() {
-            const apellidoPaterno = document.getElementById('apellido-paterno').value.trim();
-            const apellidoMaterno = document.getElementById('apellido-materno').value.trim();
-            const nombre = document.getElementById('nombre').value.trim();
-            const correo = document.getElementById('correo').value.trim();
-            const tipoSuscripcion = document.getElementById('tipo-suscripcion').value.trim();
+        // Validaciones inteligentes para suscripción
+        document.addEventListener('DOMContentLoaded', function() {
             
-            if (!apellidoPaterno || !apellidoMaterno || !nombre || !correo || !tipoSuscripcion) {
-                alert('Por favor, complete todos los campos incluyendo el tipo de suscripción.');
+            // 1. Validación de campos de nombre y apellidos (solo letras, espacios y acentos)
+            const camposTexto = ['apellido-paterno', 'apellido-materno', 'nombre'];
+            
+            camposTexto.forEach(function(campoId) {
+                const campo = document.getElementById(campoId);
+                
+                // Prevenir entrada de números y caracteres especiales en tiempo real
+                campo.addEventListener('keypress', function(e) {
+                    const char = String.fromCharCode(e.which);
+                    const regex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]$/;
+                    if (!regex.test(char)) {
+                        e.preventDefault();
+                    }
+                });
+                
+                // Limpiar cualquier número o carácter especial que se pegue
+                campo.addEventListener('input', function() {
+                    this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
+                });
+            });
+
+            // 2. Validación del correo electrónico en tiempo real
+            const campoCorreo = document.getElementById('correo');
+            if (campoCorreo) {
+                campoCorreo.addEventListener('input', function() {
+                    const email = this.value.trim();
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    
+                    // Cambiar estilo según validez
+                    if (email && !emailRegex.test(email)) {
+                        this.style.borderColor = '#e74c3c';
+                        this.style.backgroundColor = '#fdf2f2';
+                    } else {
+                        this.style.borderColor = '#4a90e2';
+                        this.style.backgroundColor = 'white';
+                    }
+                });
+            }
+
+            // 3. Agregar indicadores visuales para campos requeridos
+            const camposRequeridos = document.querySelectorAll('input[required], select[required]');
+            camposRequeridos.forEach(function(campo) {
+                const label = campo.previousElementSibling;
+                if (label && label.tagName === 'LABEL') {
+                    label.innerHTML += ' <span style="color: #e74c3c;">*</span>';
+                }
+            });
+
+            // 4. Validación del formulario con feedback visual
+            const formulario = document.querySelector('form');
+            if (formulario) {
+                formulario.addEventListener('submit', function(e) {
+                    if (!validarSuscripcionCompleta()) {
+                        e.preventDefault();
+                    }
+                });
+            }
+        });
+
+        function validarSuscripcionCompleta() {
+            const errores = [];
+            
+            // Validar apellido paterno
+            const apellidoPaterno = document.getElementById('apellido-paterno').value.trim();
+            if (!apellidoPaterno) {
+                errores.push('El apellido paterno es obligatorio.');
+                marcarCampoError('apellido-paterno');
+            } else if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(apellidoPaterno)) {
+                errores.push('El apellido paterno solo debe contener letras.');
+                marcarCampoError('apellido-paterno');
+            } else {
+                marcarCampoValido('apellido-paterno');
+            }
+
+            // Validar apellido materno
+            const apellidoMaterno = document.getElementById('apellido-materno').value.trim();
+            if (!apellidoMaterno) {
+                errores.push('El apellido materno es obligatorio.');
+                marcarCampoError('apellido-materno');
+            } else if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(apellidoMaterno)) {
+                errores.push('El apellido materno solo debe contener letras.');
+                marcarCampoError('apellido-materno');
+            } else {
+                marcarCampoValido('apellido-materno');
+            }
+
+            // Validar nombre
+            const nombre = document.getElementById('nombre').value.trim();
+            if (!nombre) {
+                errores.push('El nombre es obligatorio.');
+                marcarCampoError('nombre');
+            } else if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(nombre)) {
+                errores.push('El nombre solo debe contener letras.');
+                marcarCampoError('nombre');
+            } else {
+                marcarCampoValido('nombre');
+            }
+
+            // Validar correo electrónico
+            const correo = document.getElementById('correo').value.trim();
+            if (!correo) {
+                errores.push('El correo electrónico es obligatorio.');
+                marcarCampoError('correo');
+            } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo)) {
+                errores.push('El formato del correo electrónico no es válido.');
+                marcarCampoError('correo');
+            } else {
+                marcarCampoValido('correo');
+            }
+
+            // Validar tipo de suscripción
+            const tipoSuscripcion = document.getElementById('tipo-suscripcion').value.trim();
+            if (!tipoSuscripcion) {
+                errores.push('Debe seleccionar un tipo de beneficio para su suscripción.');
+                marcarCampoError('tipo-suscripcion');
+            } else {
+                marcarCampoValido('tipo-suscripcion');
+            }
+
+            // Mostrar errores si los hay
+            if (errores.length > 0) {
+                mostrarErrores(errores);
                 return false;
             }
+
+            // Mostrar mensaje de éxito
+            mostrarMensajeExito();
             return true;
+        }
+
+        function marcarCampoError(campoId) {
+            const campo = document.getElementById(campoId);
+            campo.style.borderColor = '#e74c3c';
+            campo.style.backgroundColor = '#fdf2f2';
+        }
+
+        function marcarCampoValido(campoId) {
+            const campo = document.getElementById(campoId);
+            campo.style.borderColor = '#27ae60';
+            campo.style.backgroundColor = '#f8fff8';
+        }
+
+        function mostrarErrores(errores) {
+            const mensajeError = `Por favor corrija los siguientes errores:\n\n• ${errores.join('\n• ')}`;
+            alert(mensajeError);
+        }
+
+        function mostrarMensajeExito() {
+            const mensaje = '¡Perfecto! ✅\n\nTus datos han sido validados correctamente.\nTe contactaremos pronto con contenido exclusivo sobre la cultura peruana.\n\n¡Gracias por suscribirte! 🎉';
+            alert(mensaje);
+        }
+
+        // Función legacy para compatibilidad
+        function validarSuscripcion() {
+            return validarSuscripcionCompleta();
         }
       </script>
 </body>
