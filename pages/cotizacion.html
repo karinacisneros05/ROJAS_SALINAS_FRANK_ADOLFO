@@ -674,6 +674,28 @@ Este es un mensaje automático del sistema de cotizaciones.
         } else if (path.includes('suscripcion')) {
             document.querySelector('.SUSCRIPCION-FOOTER').style.display = 'none';
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var campoNombres = document.getElementById('apellidos');
+            if (campoNombres) {
+                campoNombres.addEventListener('keydown', function(e) {
+                    if (
+                        e.ctrlKey || e.metaKey || e.altKey ||
+                        [8, 9, 13, 16, 17, 18, 20, 27, 37, 38, 39, 40, 46].includes(e.keyCode)
+                    ) {
+                        return;
+                    }
+                    const char = e.key;
+                    const regex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]$/;
+                    if (!regex.test(char)) {
+                        e.preventDefault();
+                    }
+                });
+                campoNombres.addEventListener('input', function() {
+                    this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
+                });
+            }
+        });
     </script>
 </body>
 </html>

@@ -236,20 +236,40 @@
                     <p class="formulario-description">Registra tus datos personales para recibir la cotización</p>
                 </div>
                 <div class="formulario-content">
-                    <form class="formulario-pedido" id="formulario-pedido">
+                    <form class="formulario-pedido" id="formulario-pedido" autocomplete="off">
                         <div class="form-group">
                             <label for="apellidos" class="form-label">Apellidos y Nombres *</label>
-                            <input type="text" id="apellidos" name="apellidos" class="form-input" required>
+                            <input
+                                type="text"
+                                id="apellidos"
+                                name="apellidos"
+                                class="form-input"
+                                required
+                                pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$"
+                                title="Solo letras, espacios y acentos"
+                                minlength="5"
+                                maxlength="100"
+                                autocomplete="off"
+                            >
                         </div>
                         
                         <div class="form-group">
                             <label for="email" class="form-label">Correo Electrónico *</label>
-                            <input type="email" id="email" name="email" class="form-input" required>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                class="form-input"
+                                required
+                                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+                                title="Ingrese un correo electrónico válido"
+                                autocomplete="off"
+                            >
                         </div>
                         
                         <div class="form-group">
                             <label for="direccion" class="form-label">Dirección de Entrega *</label>
-                            <textarea id="direccion" name="direccion" class="form-textarea" required></textarea>
+                            <textarea id="direccion" name="direccion" class="form-textarea" required minlength="5"></textarea>
                         </div>
                         
                         <div class="form-group">
@@ -259,7 +279,7 @@
                     </form>
                     
                     <div class="botones-container">
-                        <button class="btn-cotizar" onclick="enviarCotizacion()">
+                        <button type="submit" class="btn-cotizar">
                             <svg class="email-icon" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
                                 <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
@@ -319,105 +339,33 @@
         </div>
     </footer>
     
+    <!-- Script de validación y depuración justo antes de </body> -->
     <script>
-        // Variables globales para los datos de cotización
-        let cotizacionDetalles = null;
-        
-        function cargarDatosCotizacion() {
-            const datosGuardados = localStorage.getItem('cotizacionDetalles');
-            if (datosGuardados) {
-                cotizacionDetalles = JSON.parse(datosGuardados);
-                mostrarResumenCotizacion();
-            }
+    console.log("Script cargado");
+    var campoNombres = document.getElementById('apellidos');
+    if (campoNombres) {
+      console.log("Campo de nombres encontrado");
+      campoNombres.addEventListener('keydown', function(e) {
+        console.log("Tecla presionada:", e.key, "keyCode:", e.keyCode);
+        if (
+          e.ctrlKey || e.metaKey || e.altKey ||
+          [8, 9, 13, 16, 17, 18, 20, 27, 37, 38, 39, 40, 46].includes(e.keyCode)
+        ) {
+          return;
         }
-        
-        function mostrarResumenCotizacion() {
-            if (cotizacionDetalles && cotizacionDetalles.productos.length > 0) {
-                const resumenProductos = document.getElementById('resumen-productos');
-                const resumenTotal = document.getElementById('resumen-total');
-                const resumenCotizacion = document.getElementById('resumen-cotizacion');
-                
-                resumenProductos.innerHTML = cotizacionDetalles.productos.map(producto => 
-                    `<div>• ${producto}</div>`
-                ).join('');
-                
-                resumenTotal.textContent = `TOTAL: S/ ${cotizacionDetalles.total.toFixed(2)}`;
-                resumenCotizacion.style.display = 'block';
-            }
+        const char = e.key;
+        const regex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]$/;
+        if (!regex.test(char)) {
+          console.log("Bloqueado:", char);
+          e.preventDefault();
         }
-        
-        function enviarCotizacion() {
-            // Obtener datos del formulario
-            const apellidos = document.getElementById('apellidos').value;
-            const email = document.getElementById('email').value;
-            const direccion = document.getElementById('direccion').value;
-            const comentarios = document.getElementById('comentarios').value;
-            
-            // Validar que todos los campos obligatorios estén completos
-            if (!apellidos || !email || !direccion) {
-                alert('Por favor, completa todos los campos obligatorios.');
-                return;
-            }
-            
-            // Preparar el contenido del email
-            const asunto = 'Cotización - Esencia de Nuestra Cultura Peruana';
-            let cuerpo = `
-COTIZACIÓN DE PRODUCTOS
-
-DATOS DEL CLIENTE:
-- Apellidos y Nombres: ${apellidos}
-- Correo Electrónico: ${email}
-- Dirección de Entrega: ${direccion}
-`;
-
-            if (cotizacionDetalles && cotizacionDetalles.productos.length > 0) {
-                cuerpo += `
-DETALLE DE PRODUCTOS:
-${cotizacionDetalles.productos.join('\n')}
-
-TOTAL: S/ ${cotizacionDetalles.total.toFixed(2)}
-`;
-            }
-            
-            if (comentarios) {
-                cuerpo += `
-COMENTARIOS ADICIONALES:
-${comentarios}
-`;
-            }
-            
-            cuerpo += `
----
-Este es un mensaje automático del sistema de cotizaciones.
-            `;
-            
-            // Enviar email usando mailto
-            const mailtoLink = `mailto:joserodriguez@elp.edu.pe?cc=${email}&subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
-            
-            // Abrir el cliente de email predeterminado
-            window.open(mailtoLink);
-            
-            // Mostrar mensaje de confirmación
-            alert('Cotización enviada exitosamente. Se abrirá tu cliente de email con los detalles de la cotización.');
-            
-            // Limpiar localStorage después de enviar
-            localStorage.removeItem('cotizacionDetalles');
-        }
-        
-        // Cargar datos cuando se carga la página
-        document.addEventListener('DOMContentLoaded', function() {
-            cargarDatosCotizacion();
-        });
-        
-        // Oculta el enlace de la página actual en el footer
-        const path = window.location.pathname;
-        if (path.includes('consulta-docente')) {
-            document.querySelector('.CONSULTA-FOOTER').style.display = 'none';
-        } else if (path.includes('libro-reclamos')) {
-            document.querySelector('.RECLAMOS-FOOTER').style.display = 'none';
-        } else if (path.includes('suscripcion')) {
-            document.querySelector('.SUSCRIPCION-FOOTER').style.display = 'none';
-        }
+      });
+      campoNombres.addEventListener('input', function() {
+        this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
+      });
+    } else {
+      console.log("Campo de nombres NO encontrado");
+    }
     </script>
 </body>
 </html>
